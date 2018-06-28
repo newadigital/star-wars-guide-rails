@@ -1,0 +1,41 @@
+<% if @vehicle %>
+<div class="row text-center">
+    <div class="card detail">
+    <%= image_tag(@vehicle.image_url, alt: @vehicle.name) %>
+    </div>
+</div>
+<div class="row">
+    <h1 class="text-center"><%= @vehicle.name %></h1>
+</div>
+
+<%= fact_panel(@vehicle.get_facts) %>
+
+<% if @pilots.length > 0 %>
+<h3>pilots</h3>
+<div class="row">
+<% @pilots.each do |pilot| %>
+    <%= image_card({
+      :url => character_path(pilot.id), 
+      :image => image_path(pilot.image_url),
+      :title => pilot.name,
+      :class => "col-6 col-md-2 mb-3"
+      }) %>
+<% end %>
+</div>
+<% end %>
+
+<% if @films.length > 0 %>
+<h3>apperances</h3>
+<div class="row">
+<% @films.each do |film| %>
+    <%= image_card({
+            :url => film_path(film.id), 
+            :image => image_path(film.image_url),
+            :title => film.title,
+            :class => "col-6 col-md-2 mb-3"
+            }) %>
+<% end %>
+</div>
+<% end %>
+
+<% end %>

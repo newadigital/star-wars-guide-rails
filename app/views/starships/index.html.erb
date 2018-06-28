@@ -1,0 +1,22 @@
+<h1 class="text-header text-center">starships</h1>
+
+<% if @starships.results.length > 0 %>
+<div class="row justify-content-center">
+<% @starships.results.each do |starship| %>
+      <%= image_card({
+        :url => starship_path(starship.id), 
+        :image => image_path(starship.image_url),
+        :title => starship.name,
+        :class => "col-6 col-md-2 mb-3"
+        }) %>
+  <% end %>
+</div>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item<% if @starships.is_first %> disabled<% end %>"><a class="page-link" href="<%= @starships.previous_page %>">Previous</a></li>
+    <li class="page-item <% if @starships.is_last %>disabled<% end %>"><a class="page-link" href="<%= @starships.next_page %>">Next</a></li>
+  </ul>
+</nav>
+
+<% end %>

@@ -1,0 +1,22 @@
+<h1 class="text-header text-center">Planets</h1>
+
+<% if @planets.results.length > 0 %>
+<div class="row justify-content-center">
+<% @planets.results.each do |planet| %>
+    <%= image_card({
+      :url => planet_path(planet.id), 
+      :image => image_path(planet.image_url),
+      :title => planet.name,
+      :class => "col-6 col-md-2 mb-3"
+      }) %>
+<% end %>
+</div>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item<% if @planets.is_first %> disabled<% end %>"><a class="page-link" href="<%= @planets.previous_page %>">Previous</a></li>
+    <li class="page-item <% if @planets.is_last %>disabled<% end %>"><a class="page-link" href="<%= @planets.next_page %>">Next</a></li>
+  </ul>
+</nav>
+
+<% end %>

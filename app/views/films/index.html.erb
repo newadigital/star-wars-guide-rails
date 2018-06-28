@@ -1,0 +1,18 @@
+<h1 class="text-header text-center">Films</h1>
+
+<% if @films.length > 0 %>
+<% @films.each do |group| %>
+<div class="row justify-content-center">
+  <% group.each do |film| %>
+  <div class="col-sm mb-3 text-center">
+    <a href="<%= film_path(film.id) %>">
+        <div class="card fixed-width">
+            <%= image_tag(film.image_url, alt: film.title) %>
+        </div>
+        <!--h5><%= (film.episode + ' - ' + film.title) %></h5-->
+    </a>
+  </div>
+  <% end %>
+</div>
+<% end %>
+<% end %>

@@ -1,0 +1,22 @@
+<h1 class="text-header text-center">vehicles</h1>
+
+<% if @vehicles.results.length > 0 %>
+<div class="row justify-content-center">
+  <% @vehicles.results.each do |vehicle| %>
+      <%= image_card({
+        :url => vehicle_path(vehicle.id), 
+        :image => image_path(vehicle.image_url),
+        :title => vehicle.name,
+        :class => "col-6 col-md-2 mb-3"
+        }) %>
+  <% end %>
+</div>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item<% if @vehicles.is_first %> disabled<% end %>"><a class="page-link" href="<%= @vehicles.previous_page %>">Previous</a></li>
+    <li class="page-item <% if @vehicles.is_last %>disabled<% end %>"><a class="page-link" href="<%= @vehicles.next_page %>">Next</a></li>
+  </ul>
+</nav>
+
+<% end %>

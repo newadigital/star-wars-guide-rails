@@ -1,0 +1,41 @@
+<% if @planet %>
+<div class="row text-center">
+    <div class="card detail">
+    <%= image_tag(@planet.image_url, alt: @planet.name) %>
+    </div>
+</div>
+<div class="row">
+    <h1 class="text-center"><%= @planet.name %></h1>
+</div>
+
+<%= fact_panel(@planet.get_facts) %>
+
+<% if @residents.length > 0 %>
+<h3>Residents</h3>
+<div class="row">
+<% @residents.each do |resident| %>
+    <%= image_card({
+            :url => character_path(resident.id), 
+            :image => image_path(resident.image_url),
+            :title => resident.name,
+            :class => "col-6 col-md-2 mb-3"
+            }) %>
+<% end %>
+</div>
+<% end %>
+
+<% if @films.length > 0 %>
+<h3>apperances</h3>
+<div class="row">
+<% @films.each do |film| %>
+    <%= image_card({
+            :url => film_path(film.id), 
+            :image => image_path(film.image_url),
+            :title => film.title,
+            :class => "col-6 col-md-2 mb-3"
+            }) %>
+<% end %>
+</div>
+<% end %>
+
+<% end %>

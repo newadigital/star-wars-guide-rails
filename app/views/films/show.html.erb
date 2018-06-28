@@ -1,0 +1,75 @@
+<% if @film %>
+
+<div class="row">
+    <div class="col-12 col-md-4">
+        <div class="card detail">
+            <%= image_tag(@film.image_url, alt: @film.title) %>
+        </div>
+    </div>
+    <div class="col text-center-r">
+        <h1 class="text-left small"><%= @film.episode %></h1>
+        <h2 class="text-left"><%= @film.title %></h2>
+        <p class="text-crawl"><%= @film.opening_crawl %></p>
+        <p>Release Date: <%= @film.get_release_date %></p>
+        <p>Diector: <%= @film.director %></p>
+        <p>Producer: <%= @film.producer %></p>
+    </div>
+    
+</div>
+<div class="row m-4">
+    <div class="col-md-3 text-center page-item">
+    <% if @previous != 0 %>
+            <a href="<%= film_path(@previous) %>" class="page-link">Previous Episode</a>
+    <% end %>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col-md-3 text-center page-item">
+    <% if @next != 0 %>
+            <a href="<%= film_path(@next) %>" class="page-link" >Next Episode</a>
+    <% end %>
+    </div>
+</div>
+<% if @characters.length > 0 %>
+<div class="row">
+    <h3>characters</h3>
+    <% @characters.each do |character| %>
+        <%= image_card({
+            :url => character_path(character.id), 
+            :image => image_path(character.image_url),
+            :title => character.name,
+            :class => "col-6 col-md-2 mb-3"
+            }) %>
+    <% end %>
+</div>
+<% end %>
+
+<% if @starships.length > 0 %>
+<div class="row">
+    <h3>starships</h3>
+    <% @starships.each do |starship| %>
+        <%= image_card({
+            :url => starship_path(starship.id), 
+            :image => image_path(starship.image_url),
+            :title => starship.name,
+            :class => "col-6 col-md-2 mb-3"
+            }) %>
+    <% end %>
+</div>
+<% end %>
+
+<% if @planets.length > 0 %>
+<div class="row">
+    <h3>locations</h3>
+    <% @planets.each do |planet| %>
+        <%= image_card({
+            :url => planet_path(planet.id), 
+            :image => image_path(planet.image_url),
+            :title => planet.name,
+            :class => "col-6 col-md-2 mb-3"
+            }) %>
+    <% end %>
+</div>
+<% end %>
+
+<% end %>

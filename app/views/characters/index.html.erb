@@ -1,0 +1,26 @@
+<h1 class="text-header text-center">characters</h1>
+
+<% if @characters.results.length > 0 %>
+<div class="row justify-content-center">
+<% @characters.results.each do |character| %>
+  <%= image_card({
+    :url => character_path(character.id), 
+    :image => image_path(character.image_url),
+    :title => character.name,
+    :class => "col-6 col-md-2 mb-3"
+    }) %>
+<% end %>
+</div>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item<% if @characters.is_first %> disabled<% end %>"><a class="page-link" href="<%= @characters.previous_page %>">Previous</a></li>
+    <!--li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li-->
+    <li class="page-item <% if @characters.is_last %>disabled<% end %>"><a class="page-link" href="<%= @characters.next_page %>">Next</a></li>
+  </ul>
+</nav>
+
+<% end %>
+

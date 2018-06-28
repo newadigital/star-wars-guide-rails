@@ -1,0 +1,14 @@
+<div class="card-group home">
+<% @sections.each do |section| %>
+  <div class="card">
+    <a href="/<%= section %>/">
+      <%= image_tag("section_" + section + ".jpg", :class => "card-img-top", :alt => "Card image cap") %>
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= section %>
+        </h5>
+      </div>
+    </a>
+  </div> 
+<% end %>
+</div>
